@@ -1,0 +1,16 @@
+metrics:
+  cpu_times:
+    display: false
+    time: 1
+    split:
+      user: true
+      system: false
+      idle: false
+
+  cpu_percent:
+    display: true
+    percpu: true
+    time: 1
+  cpu_times_percent:
+    display: false
+    time: 4
