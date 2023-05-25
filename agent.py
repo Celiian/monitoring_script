@@ -43,7 +43,8 @@ def create_job(metric: str, args: dict):
     return job
 
 def splitter(metric: str, args : dict):
-    if split := args.get("split", {}) :
+    split = args.get("split", {})
+    if split :
         args.pop("split", None)
         for subset, display in split.items():
             if(display):
