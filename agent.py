@@ -29,7 +29,7 @@ def write(metric : str, value, subset : str):
     write_api.write(bucket=INFLUXDB_BUCKET, record=p)
 
 
-def getter(metric: str, args : dict, subset : str | None = None):
+def getter(metric: str, args :dict, subset=None):
     getter = getattr(psutil, metric)
     value = getter(**args)
     if subset :
