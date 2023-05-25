@@ -1,19 +1,48 @@
 metrics:
   cpu_times:
     display: true
-    time: 1
-    split:
-      user: true
-      system: false
-      idle: false
+    time: 5
 
   cpu_percent:
     display: true
-    percpu: true
-    time: 1
+    time: 5
+
   cpu_times_percent:
     display: false
-    time: 4
+    time: 5
+
+  cpu_count:
+    display: true
+    time: 5
+
+  cpu_freq:
+    display: true
+    time: 5
+
+  cpu_stats:
+    display: false
+    time: 5
+
+  cpu_times_percent:
+    display: true
+    time: 5
+
+  cpu_times_percent_windows:
+    display: false
+    time: 5
+
+  cpu_count_logical:
+    display: true
+    time: 5
+
+  cpu_count_physical:
+    display: true
+    time: 5
+
+  cpu_percent_per_cpu:
+    display: true
+    time: 5
+
 
 config:
   monitored_server: back_end
