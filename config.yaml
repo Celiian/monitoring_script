@@ -14,3 +14,6 @@ metrics:
   cpu_times_percent:
     display: false
     time: 4
+
+config:
+  monitored_server: back_end
