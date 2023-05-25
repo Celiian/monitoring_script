@@ -8,45 +8,78 @@ metrics:
     time: 5
 
   cpu_times_percent:
-    display: false
+    display: true
     time: 5
 
   cpu_count:
     display: true
     time: 5
 
-  cpu_freq:
-    display: true
-    time: 5
-
   cpu_stats:
-    display: false
-    time: 5
-
-  cpu_times_percent:
     display: true
     time: 5
 
-  cpu_times_percent_windows:
-    display: false
-    time: 5
-
-  cpu_count_logical:
+  getloadavg:
     display: true
     time: 5
 
-  cpu_count_physical:
+  virtual_memory:
     display: true
     time: 5
 
-  cpu_percent_per_cpu:
+  swap_memory:
     display: true
     time: 5
 
+  disk_partitions:
+    all: false
+    display: true
+    time: 5
+
+  disk_usage:
+    display: true
+    time: 5
+    path: "/"
+
+  net_io_counters:
+    display: true
+    time: 5
+
+  net_connections:
+    display: true
+    time: 5
+
+  net_if_addrs:
+    display: true
+    time: 5
+
+  net_if_stats:
+    display: true
+    time: 5
+
+  sensors_battery:
+    display: true
+    time: 5
+
+  boot_time:
+    display: true
+    time: 5
+
+  users:
+    display: true
+    time: 5
+
+  pids:
+    display: true
+    time: 5
+
+  process_iter:
+    display: true
+    time: 5
 
 config:
   monitored_server: back_end
-  influxdb_url: http://192.168.64.9:8086
-  influxdb_token: -7oALy0GcWUTEHyJTddYOWtzjskFaG93sldnjO47VM7XjxRzuKcBQOxt_e8eh9Q37f0x7FRvNqdJZ6UdOBfVuw==
+  influxdb_url: http://192.168.64.12:8086
+  influxdb_token: 5akShSOR813MQmv7ZehBxLF97KbvDPFOWL-R15TrTCcnUVOhtYQ_w6OAiVkfcRilWY07m1iMa5XHqpUWlYZIMw==
   influxdb_org: coding
   influxdb_bucket: movie_logs

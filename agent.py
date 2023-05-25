@@ -1,7 +1,5 @@
 import psutil
 import yaml
-
-from datetime import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
