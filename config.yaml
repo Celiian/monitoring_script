@@ -1,6 +1,6 @@
 metrics:
   cpu_times:
-    display: false
+    display: true
     time: 1
     split:
       user: true
@@ -17,3 +17,7 @@ metrics:
 
 config:
   monitored_server: back_end
+  influxdb_url: http://192.168.64.9:8086
+  influxdb_token: -7oALy0GcWUTEHyJTddYOWtzjskFaG93sldnjO47VM7XjxRzuKcBQOxt_e8eh9Q37f0x7FRvNqdJZ6UdOBfVuw==
+  influxdb_org: coding
+  influxdb_bucket: movie_logs

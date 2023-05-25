@@ -6,14 +6,17 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-bucket = "movie_logs"
-path = "config.yaml"
+CONFIG_PATH = "config.yaml"
 
-with open(path) as file:
-    config = yaml.load(file, Loader=yaml.Loader)
-    influxDb_measurement_name = config["config"]["monitored_server"] + "_system_monitoring"
+with open(CONFIG_PATH) as file:
+    config = yaml.load(file, Loader=yaml.Loader)["config"]
+    INFLUXDB_MEASUREMENT_NAME = config["monitored_server"] + "_system_monitoring"
+    INFLUXDB_URL = config["influxdb_url"]
+    INFLUXDB_BUCKET = config["influxdb_bucket"]
+    INFLUXDB_ORG = config["influxdb_org"]
+    INFLUXDB_TOKEN = config["influxdb_token"]
 
-client = InfluxDBClient(url="http://192.168.64.12:8086", token="5akShSOR813MQmv7ZehBxLF97KbvDPFOWL-R15TrTCcnUVOhtYQ_w6OAiVkfcRilWY07m1iMa5XHqpUWlYZIMw==", org="coding")
+client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 
 write_api = client.write_api(write_options=SYNCHRONOUS)
 query_api = client.query_api()
@@ -23,9 +26,9 @@ def write(metric : str, value, subset : str):
     if not subset:
         subset = "None"
 
-    p = Point(influxDb_measurement_name).tag("subset", subset).field(metric, value)
+    p = Point(INFLUXDB_MEASUREMENT_NAME).tag("subset", subset).field(metric, value)
 
-    write_api.write(bucket=bucket, record=p)
+    write_api.write(bucket=INFLUXDB_BUCKET, record=p)
 
 
 def getter(metric: str, args : dict, subset : str | None = None):
@@ -53,7 +56,7 @@ def splitter(metric: str, args : dict):
 def main():
     scheduler = BlockingScheduler()
 
-    with open(path) as file:
+    with open(CONFIG_PATH) as file:
         config = yaml.load(file, Loader=yaml.Loader)
 
     metrics = config["metrics"]
