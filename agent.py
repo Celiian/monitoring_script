@@ -20,13 +20,13 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 query_api = client.query_api()
 
 
-def write(metric : str, value, subset : str):
+def write(metric : str, value, subset : str | None = None):
     if not subset:
         subset = "None"
-
-    p = Point(INFLUXDB_MEASUREMENT_NAME).tag("subset", subset).field(metric, value)
-
-    write_api.write(bucket=INFLUXDB_BUCKET, record=p)
+    # p = Point(INFLUXDB_MEASUREMENT_NAME).tag("subset", subset).field(metric, value)
+    with open("logs.txt", "a") as file:
+        file.write(str(metric) + " " + str(value) + "\n")
+    # write_api.write(bucket=INFLUXDB_BUCKET, record=p)
 
 
 def getter(metric: str, args :dict, subset=None):
@@ -34,15 +34,25 @@ def getter(metric: str, args :dict, subset=None):
     value = getter(**args)
     if subset :
         value = getattr(value, subset)
+        metric += "-" + subset
 
-    write(metric, str(value), subset)
+    splitter(metric, value)
+
+def splitter(metric: str, value: any):
+    if type(value) is int or type(value) is float or type(value) is str:
+        write(metric, value)
+    else :
+        for field in value:
+            subset = metric + "-" + str(field)
+            splitter(subset, field)
+
 
 def create_job(metric: str, args: dict):
     def job():
-        return splitter(metric, args)
+        return selector(metric, args)
     return job
 
-def splitter(metric: str, args : dict):
+def selector(metric: str, args : dict):
     split = args.get("split", {})
     if split :
         args.pop("split", None)

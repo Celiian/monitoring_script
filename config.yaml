@@ -1,81 +1,77 @@
 metrics:
   cpu_times:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   cpu_percent:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   cpu_times_percent:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   cpu_count:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   cpu_stats:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   getloadavg:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   virtual_memory:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   swap_memory:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   disk_partitions:
     all: false
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   disk_usage:
     display: true
-    time: 5
+    time: 10
     path: "/"
 
   net_io_counters:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   net_connections:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   net_if_addrs:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   net_if_stats:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   sensors_battery:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   boot_time:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   users:
-    display: true
-    time: 5
-
-  pids:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
   process_iter:
-    display: true
-    time: 5
+    display: false
+    time: 10
 
 config:
   monitored_server: back_end
