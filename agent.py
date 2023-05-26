@@ -20,7 +20,7 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 query_api = client.query_api()
 
 
-def write(metric : str, value, subset):
+def write(metric : str, value, subset=None):
     if not subset:
         subset = "None"
     # p = Point(INFLUXDB_MEASUREMENT_NAME).tag("subset", subset).field(metric, value)
@@ -39,12 +39,16 @@ def getter(metric: str, args :dict, subset=None):
     splitter(metric, value)
 
 def splitter(metric: str, value: any):
-    if type(value) is int or type(value) is float or type(value) is str:
+    accepted_types = [int, float, str, bool]
+    if type(value) in accepted_types:
         write(metric, value)
     else :
-        for field in value:
-            subset = metric + "-" + str(field)
-            splitter(subset, field)
+        try:
+            for field in value:
+                subset = metric + "-" + str(field)
+                splitter(subset, field)
+        except:
+            write(metric, str(value))
 
 
 def create_job(metric: str, args: dict):
@@ -73,6 +77,7 @@ def main():
         args = metrics[metric_name]
         display = args.get("display", False)
         if(display):
+            print(metric_name)
             interval = args.get("time", 5)
             args.pop("time", None)
             args.pop("display", None)
