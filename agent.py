@@ -51,6 +51,7 @@ def splitter(metric: str, value: any):
                     subset = metric + "-" + str(field_name)
                     splitter(subset, field_value)
         except:
+            print("Warning: " + str(type(value)) + " not handled")
             write(metric, str(value))
 
 
