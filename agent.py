@@ -77,7 +77,6 @@ def main():
         args = metrics[metric_name]
         display = args.get("display", False)
         if(display):
-            print(metric_name)
             interval = args.get("time", 5)
             args.pop("time", None)
             args.pop("display", None)
