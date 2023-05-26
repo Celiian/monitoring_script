@@ -24,7 +24,7 @@ metrics:
     time: 10
 
   virtual_memory:
-    display: false
+    display: true
     time: 10
 
   swap_memory:
@@ -37,7 +37,7 @@ metrics:
     time: 10
 
   disk_usage:
-    display: true
+    display: false
     time: 10
     path: "/"
 

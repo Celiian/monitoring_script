@@ -20,7 +20,7 @@ write_api = client.write_api(write_options=SYNCHRONOUS)
 query_api = client.query_api()
 
 
-def write(metric : str, value, subset : str | None = None):
+def write(metric : str, value, subset):
     if not subset:
         subset = "None"
     # p = Point(INFLUXDB_MEASUREMENT_NAME).tag("subset", subset).field(metric, value)
