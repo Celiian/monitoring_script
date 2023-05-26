@@ -44,9 +44,12 @@ def splitter(metric: str, value: any):
         write(metric, value)
     else :
         try:
-            for field in value:
-                subset = metric + "-" + str(field)
-                splitter(subset, field)
+            fields = dir(value)
+            for field_name in fields:
+                if not field_name.startswith("__"):
+                    field_value = getattr(value, field_name)
+                    subset = metric + "-" + str(field_name)
+                    splitter(subset, field_value)
         except:
             write(metric, str(value))
 
